@@ -6,8 +6,13 @@ const letterDb = ["a"];
 
 export const setLetters = async (newLetter) => {
   "use server";
+  const a = letterDb.length
   logFn(modName, "setLetters")
   letterDb.push(newLetter);
+  const b = letterDb.length
+  if (b - a > 1) {
+    log("ERROR", `len went from ${a} to ${b}`)
+  }
   log('letterDb:', letterDb)
   return new Promise((r) => setTimeout(() => r(letterDb), 1000));
 };
