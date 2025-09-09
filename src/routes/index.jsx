@@ -32,14 +32,14 @@ export default function Home() {
   return (
     <main>
       <h1>Home</h1>
-      {/* <h2>Numbers</h2>
+      <h2>Numbers</h2>
       <form action={addNumberAction} method="post">
         <input id="item" name="item" value="" />
         <input type="submit" value="submit" />
       </form>
       <Show when={numbers()}>
         <p>numbers: {numbers().toString()}</p>
-      </Show> */}
+      </Show>
       <h2>Letters</h2>
       <form action={addLetterAction} method="post">
         <input id="item" name="item" value="" />
