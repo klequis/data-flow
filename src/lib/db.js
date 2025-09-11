@@ -19,8 +19,8 @@ const storage = createStorage({
 
 export async function getData(collection, item) {
   "use server";
-  logFn(modName, "getData");
-  log("collection:item:", `${collection}:${item}`)
+//   logFn(modName, "getData");
+//   log("collection:item:", `${collection}:${item}`)
   await wait(waitTime);
   const r = await storage.getItem(`${collection}:${item}`);
   return r ? r : null;
@@ -28,7 +28,7 @@ export async function getData(collection, item) {
 
 export async function setData(collection, item, data) {
   "use server";
-  logFn(modName, "setData");
+//   logFn(modName, "setData");
   await wait(waitTime);
   await storage.setItem(`${collection}:${item}`, data);
 }

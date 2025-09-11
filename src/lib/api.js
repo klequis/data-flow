@@ -1,7 +1,5 @@
 import { action, json, query } from "@solidjs/router";
 import { logFn } from "../utils/logFn";
-// import { getLetters, setLetters } from "./lettersDb";
-// import { getNumbers, setNumbers } from "./numbersDb";
 import { getData, setData } from "./db";
 const log = console.log;
 const modName = "api.js";
@@ -33,19 +31,18 @@ export const addNumberAction = action(async (formData) => {
   // return json(true, { revalidate: ["lettersQuery"] })
 }, "addNumberAction");
 
-
 //* letters
 
 export const lettersQuery = query(async () => {
   "use server";
-  logFn(modName, "lettersQuery");
+  // logFn(modName, "lettersQuery");
   const r = await getData("letters", "data");
   return r;
 }, "lettersQuery");
 
 export const addLetterAction = action(async (formData) => {
   "use server";
-  logFn(modName, "addLetterAction")
+  // logFn(modName, "addLetterAction")
   const itm = formData.get("item");
   // log('itm:', itm)
   const letters = await getData("letters", "data");
@@ -55,4 +52,3 @@ export const addLetterAction = action(async (formData) => {
   await setData("letters", "data", toSet);
   // return json(true, { revalidate: "lettersQuery" })
 }, "addLetterAction");
-
