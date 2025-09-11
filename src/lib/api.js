@@ -8,14 +8,16 @@ const modName = "api.js";
 
 export const numbersQuery = query(async () => {
   "use server";
-  logFn(modName, "numbersQuery");
+  // logFn(modName, "numbersQuery");
+  log("- numbersQuery")
   const r = await getData("numbers", "data");
   return r;
 }, "numbersQuery");
 
 export const addNumberAction = action(async (formData) => {
   "use server";
-  logFn(modName, "addNumberAction")
+  log("- addNumberAction")
+  // logFn(modName, "addNumberAction")
   try {
     const itm = formData.get("item");
     // log('itm', itm)
@@ -36,6 +38,7 @@ export const addNumberAction = action(async (formData) => {
 export const lettersQuery = query(async () => {
   "use server";
   // logFn(modName, "lettersQuery");
+  log("- lettersQuery")
   const r = await getData("letters", "data");
   return r;
 }, "lettersQuery");
@@ -43,6 +46,7 @@ export const lettersQuery = query(async () => {
 export const addLetterAction = action(async (formData) => {
   "use server";
   // logFn(modName, "addLetterAction")
+  log("- addLetterAction")
   const itm = formData.get("item");
   // log('itm:', itm)
   const letters = await getData("letters", "data");
