@@ -15,7 +15,7 @@ export const numbersQuery = query(async () => {
 
 export const addNumberAction = action(async (formData) => {
   "use server";
-  // logFn(modName, "addNumberAction")
+  logFn(modName, "addNumberAction")
   try {
     const itm = formData.get("item");
     // log('itm', itm)

@@ -12,29 +12,31 @@ import { addSpecialCharAction, specialCharsQuery } from "~/lib/apiSpecial";
 const log = console.log;
 
 export default function Home() {
-  log("- Home")
+  log("- Home");
+  //? numbers
   // const numbers = createAsync(() => numbersQuery());
+  //? letters
   // const letters = createAsync(() => lettersQuery());
   //* createAsync only gets called once.
+  //? specialCharss
   //* specialChars = () => specialCharsQuery() // i.e., a function
-  // const specialChars = createAsync(() => specialCharsQuery())
-  const specialChars = createAsync(
-    (() => {
-      console.log('- specialChars')
-      return () => specialCharsQuery()
-    }
-    )()
-  )
-  
+  const specialChars = createAsync(() => specialCharsQuery())
+  // const specialChars = createAsync(
+  //   (() => {
+  //     console.log("- specialChars");
+  //     return () => specialCharsQuery();
+  //   })()
+  // );
+
   return (
     <main>
       <h1>Home</h1>
 
-      <h2>Special Characters</h2>
+      {/* <h2>Special Characters</h2>
       <form action={addSpecialCharAction} method="post">
         <input id="item" name="item" value="" />
         <input type="submit" value="submit" />
-      </form>
+      </form> */}
       <Show when={specialChars()}>
         <p>special chars: {specialChars().toString()}</p>
       </Show>

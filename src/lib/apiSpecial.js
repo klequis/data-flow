@@ -17,6 +17,7 @@ export const specialCharsQuery = query(async () => {
 export const addSpecialCharAction = action(async (formData) => {
   "use server";
   // logFn(modName, "addSpecialCharAction")
+  log("- addSpecialCharAction")
   const itm = formData.get("item");
   // log('itm:', itm)
   const chars = await getData("specialChars", "data");
