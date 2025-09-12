@@ -7,7 +7,7 @@ import { wait } from "~/utils/wait";
 //* import { StorageValue } from "unstorage";
 //* `type StorageValue = string | number | boolean | object | null`
 
-const waitTime = 0;
+const waitTime = 2000;
 const log = console.log;
 const modName = "db.js";
 

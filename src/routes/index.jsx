@@ -1,4 +1,4 @@
-import { createAsync } from "@solidjs/router";
+import { createAsync, useSubmission } from "@solidjs/router";
 import { createEffect, onMount, Show } from "solid-js";
 import { time } from "~/utils/logTime";
 import {
@@ -15,16 +15,13 @@ const log = console.log;
 
 export default function Home() {
   log("- Home: isServer", {isServer, time: time()});
-  //? numbers
-  // const numbers = createAsync(() => numbersQuery());
   const numbers = createAsync(() => numbersQuery(), {deferStream: true});
-  //? letters
-  // const letters = createAsync(() => lettersQuery());
   const letters = createAsync(() => lettersQuery(), { deferStream: true});
-  //* createAsync only gets called once.
-  //? specialCharss
-  //* specialChars = () => specialCharsQuery() // i.e., a function
   const specialChars = createAsync(() => specialCharsQuery(), {deferStream: true})
+
+  const subNumbers = useSubmission(addNumberAction)
+  const subLetters = useSubmission(addLetterAction)
+  const subSpecial = useSubmission(addSpecialCharAction)
   // const specialChars = createAsync(
   //   (() => {
   //     console.log("- specialChars");
@@ -33,10 +30,18 @@ export default function Home() {
   // );
   onMount(() => log("- onMount: isServer", {isServer, time: time()}))
 
+  createEffect(() => {
+
+    log("subNumbers.pending", subNumbers.pending);
+    log("subNumbers.result", subNumbers.result); //* string || undefined
+    log("subNumbers.input", subNumbers.input?.[0].get("item"));
+    log("subNumbers.input", subNumbers.input)
+    log("subNumbers.error", subNumbers.error?.message)
+  });
+
   return (
     <main>
       <h1>Home</h1>
-
       <h2>Special Characters</h2>
       <form action={addSpecialCharAction} method="post">
         <input id="item" name="item" value="" />
@@ -47,6 +52,7 @@ export default function Home() {
       </Show>
 
       <h2>Numbers</h2>
+      <h1>input {subNumbers.input?.[0]}</h1>
       <form action={addNumberAction} method="post">
         <input id="item" name="item" value="" />
         <input type="submit" value="submit" />
@@ -54,6 +60,7 @@ export default function Home() {
       <Show when={numbers()}>
         <p>numbers: {numbers().toString()}</p>
       </Show>
+
       <h2>Letters</h2>
       <form action={addLetterAction} method="post">
         <input id="item" name="item" value="" />
